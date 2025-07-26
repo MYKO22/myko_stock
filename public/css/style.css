@@ -76,6 +76,7 @@
   transition: var(--transition);
   white-space: nowrap;
   transform: translateX(-1rem);
+  margin-left: 0.5rem;
 }
 
 .sidebar.active .logo_name,
@@ -140,6 +141,7 @@
   opacity: 0;
   transition: var(--transition);
   transform: translateX(-1rem);
+  margin-left: 0.5rem;
 }
 
 .sidebar.active .links_name,
@@ -149,7 +151,13 @@
 }
 
 /* Tooltip pour les liens quand sidebar fermée */
-.sidebar .nav-links li::before {
+.sidebar .nav-links li {
+  position: relative;
+  list-style: none;
+  margin: 0.25rem 0;
+}
+
+.sidebar .nav-links li::after {
   content: attr(data-tooltip);
   position: absolute;
   left: calc(100% + 0.5rem);
@@ -168,7 +176,7 @@
   box-shadow: var(--shadow);
 }
 
-.sidebar:not(.active):not(:hover) .nav-links li:hover::before {
+.sidebar:not(.active):not(:hover) .nav-links li:hover::after {
   opacity: 1;
 }
 
