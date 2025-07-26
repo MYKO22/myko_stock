@@ -145,7 +145,7 @@ nav .search-box .bx-search {
   font-size: 22px;
   transition: all 0.4 ease;
 }
-/* .home-section nav .profile-details {
+.home-section nav .profile-details {
   display: flex;
   align-items: center;
   background: #f5f6fa;
@@ -154,7 +154,7 @@ nav .search-box .bx-search {
   height: 50px;
   min-width: 190px;
   padding: 0 15px 0 2px;
-} */
+}
 nav .profile-details img {
   height: 40px;
   width: 40px;
@@ -172,7 +172,10 @@ nav .profile-details i {
   font-size: 25px;
   color: #333;
 }
-
+.home-section .home-content {
+  position: relative;
+  padding-top: 104px;
+}
 .overview-boxes {
   width: 100%;
   height: fit-content;
@@ -186,19 +189,19 @@ nav .profile-details i {
 }
 .box {
   display: flex;
-  flex-basis: 30%;
+  flex-basis: 15%;
   align-items: center;
   justify-content: center;
   min-width: calc(100% / 4 - 15px);
-  background: blue;
+  background: #fff;
   padding: 15px 14px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin: 5px;
 }
 .overview-boxes .box-topic {
-  font-size: 10px;
-  font-weight: 50px;
+  font-size: 20px;
+  font-weight: 500;
 }
 .home-content .box .number {
   display: inline-block;
