@@ -8,7 +8,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Variables CSS */
+/* Variables CSS pour cohérence */
 :root {
   --sidebar-width: 15rem;
   --sidebar-collapsed: 3.75rem;
@@ -24,8 +24,9 @@
   --border-color: #efeef1;
   --shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.3s ease;
   --border-radius: 0.75rem;
+  --border-radius-small: 0.375rem;
 }
 
 /* SIDEBAR */
@@ -40,11 +41,8 @@
   box-shadow: 0.125rem 0 1rem rgba(0, 0, 0, 0.1);
 }
 
+.sidebar:hover,
 .sidebar.active {
-  width: var(--sidebar-width);
-}
-
-.sidebar:hover {
   width: var(--sidebar-width);
 }
 
@@ -54,7 +52,6 @@
   align-items: center;
   padding: 0 1rem;
   background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
   overflow: hidden;
 }
 
@@ -64,7 +61,6 @@
   color: var(--white);
   min-width: 3.75rem;
   text-align: center;
-  transition: var(--transition);
   flex-shrink: 0;
 }
 
@@ -72,15 +68,15 @@
   color: var(--white);
   font-size: 1.125rem;
   font-weight: 600;
-  opacity: 0;
-  transition: var(--transition);
   white-space: nowrap;
+  opacity: 0;
   transform: translateX(-1rem);
+  transition: var(--transition);
   margin-left: 0.5rem;
 }
 
-.sidebar.active .logo_name,
-.sidebar:hover .logo_name {
+.sidebar:hover .logo_name,
+.sidebar.active .logo_name {
   opacity: 1;
   transform: translateX(0);
 }
@@ -103,7 +99,7 @@
   align-items: center;
   text-decoration: none;
   transition: var(--transition);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   padding: 0 0.5rem;
   overflow: hidden;
 }
@@ -116,7 +112,7 @@
     rgba(38, 151, 255, 0.2) 100%
   );
   transform: translateX(0.25rem);
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .sidebar .nav-links li i {
@@ -139,28 +135,28 @@
   font-weight: 400;
   white-space: nowrap;
   opacity: 0;
-  transition: var(--transition);
   transform: translateX(-1rem);
+  transition: var(--transition);
   margin-left: 0.5rem;
 }
 
-.sidebar.active .links_name,
-.sidebar:hover .links_name {
+.sidebar:hover .links_name,
+.sidebar.active .links_name {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Tooltip pour les liens quand sidebar fermée */
-.sidebar .nav-links li {
-  position: relative;
-  list-style: none;
-  margin: 0.25rem 0;
+.sidebar .nav-links .log_out {
+  position: absolute;
+  bottom: 2rem;
+  width: calc(100% - 1rem);
 }
 
+/* Tooltips pour sidebar fermée */
 .sidebar .nav-links li::after {
   content: attr(data-tooltip);
   position: absolute;
-  left: calc(100% + 0.5rem);
+  left: calc(100% + 0.75rem);
   top: 50%;
   transform: translateY(-50%);
   background: var(--primary-color);
@@ -176,7 +172,7 @@
   box-shadow: var(--shadow);
 }
 
-.sidebar:not(.active):not(:hover) .nav-links li:hover::after {
+.sidebar:not(:hover):not(.active) .nav-links li:hover::after {
   opacity: 1;
 }
 
@@ -191,6 +187,7 @@
   overflow-x: hidden;
 }
 
+.sidebar:hover ~ .home-section,
 .sidebar.active ~ .home-section {
   width: calc(100% - var(--sidebar-width));
   left: var(--sidebar-width);
@@ -210,9 +207,9 @@
   padding: 0 1.5rem;
   box-shadow: var(--shadow);
   transition: var(--transition);
-  backdrop-filter: blur(10px);
 }
 
+.sidebar:hover ~ .home-section nav,
 .sidebar.active ~ .home-section nav {
   left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
@@ -225,7 +222,7 @@
   font-weight: 500;
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   transition: var(--transition);
 }
 
@@ -237,13 +234,12 @@
 nav .sidebar-button i {
   font-size: 1.5rem;
   margin-right: 0.5rem;
-  transition: var(--transition);
 }
 
 .home-section nav .search-box {
   position: relative;
   height: 3rem;
-  max-width: 32rem;
+  max-width: 30rem;
   width: 100%;
   margin: 0 1rem;
 }
@@ -254,7 +250,7 @@ nav .search-box input {
   outline: none;
   background: var(--background-color);
   border: 0.125rem solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   font-size: 1rem;
   padding: 0 3.5rem 0 1rem;
   transition: var(--transition);
@@ -279,8 +275,8 @@ nav .search-box .bx-search {
   justify-content: center;
   color: var(--white);
   font-size: 1.125rem;
-  transition: var(--transition);
   cursor: pointer;
+  transition: var(--transition);
 }
 
 nav .search-box .bx-search:hover {
@@ -293,9 +289,9 @@ nav .search-box .bx-search:hover {
   align-items: center;
   background: var(--background-color);
   border: 0.125rem solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   height: 3rem;
-  min-width: 11rem;
+  min-width: 10rem;
   padding: 0.25rem;
   transition: var(--transition);
   cursor: pointer;
@@ -337,18 +333,6 @@ nav .profile-details i {
 .home-content {
   position: relative;
   padding: 6.5rem 1rem 1rem;
-  animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .overview-boxes {
@@ -366,31 +350,9 @@ nav .profile-details i {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  animation: slideInUp 0.5s ease-out backwards;
-}
-
-.box:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.box:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.box:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.box:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .box:hover {
@@ -398,6 +360,7 @@ nav .profile-details i {
   box-shadow: var(--shadow-hover);
 }
 
+/* Bordures colorées en haut */
 .box::before {
   content: "";
   position: absolute;
@@ -405,20 +368,20 @@ nav .profile-details i {
   left: 0;
   right: 0;
   height: 0.25rem;
-  background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+  background: var(--accent-color);
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .box:nth-child(2)::before {
-  background: linear-gradient(90deg, var(--success-color), #20b2aa);
+  background: var(--success-color);
 }
 
 .box:nth-child(3)::before {
-  background: linear-gradient(90deg, var(--warning-color), #ff8c00);
+  background: var(--warning-color);
 }
 
 .box:nth-child(4)::before {
-  background: linear-gradient(90deg, var(--danger-color), #dc143c);
+  background: var(--danger-color);
 }
 
 .box .right-side {
@@ -459,9 +422,6 @@ nav .profile-details i {
   margin-right: 0.5rem;
   font-size: 0.7rem;
   color: var(--white);
-}
-
-.home-content .box .indicator i:not(.down) {
   background: var(--success-color);
 }
 
@@ -481,15 +441,12 @@ nav .profile-details i {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  background: linear-gradient(135deg, #cce5ff, #e6f3ff);
+  color: var(--accent-color);
 }
 
 .box:hover .cart {
   transform: scale(1.1) rotate(5deg);
-}
-
-.home-content .box .cart {
-  background: linear-gradient(135deg, #cce5ff, #e6f3ff);
-  color: var(--accent-color);
 }
 
 .home-content .box .cart.two {
@@ -512,16 +469,6 @@ nav .profile-details i {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1.5rem;
-  animation: fadeIn 0.8s ease-out 0.3s backwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .home-content .sales-boxes .box {
@@ -529,7 +476,7 @@ nav .profile-details i {
   padding: 1.5rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  animation: none;
+  display: block;
 }
 
 .sales-boxes .box .title {
@@ -617,7 +564,7 @@ nav .profile-details i {
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 500;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   text-decoration: none;
   transition: var(--transition);
   box-shadow: 0 0.25rem 0.5rem rgba(38, 151, 255, 0.3);
@@ -670,7 +617,7 @@ select {
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.75rem;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   border: 0.125rem solid var(--border-color);
   font-size: 1rem;
   transition: var(--transition);
@@ -692,7 +639,7 @@ button {
   border: none;
   font-size: 0.9375rem;
   font-weight: 500;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-small);
   cursor: pointer;
   transition: var(--transition);
   box-shadow: 0 0.25rem 0.5rem rgba(38, 151, 255, 0.3);
@@ -712,16 +659,15 @@ button:active {
   .sidebar {
     width: var(--sidebar-collapsed);
   }
+  .sidebar:hover,
   .sidebar.active {
-    width: var(--sidebar-width);
-  }
-  .sidebar:hover {
     width: var(--sidebar-width);
   }
   .home-section {
     width: calc(100% - var(--sidebar-collapsed));
     left: var(--sidebar-collapsed);
   }
+  .sidebar:hover ~ .home-section,
   .sidebar.active ~ .home-section {
     left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
@@ -730,6 +676,7 @@ button:active {
     width: calc(100% - var(--sidebar-collapsed));
     left: var(--sidebar-collapsed);
   }
+  .sidebar:hover ~ .home-section nav,
   .sidebar.active ~ .home-section nav {
     width: calc(100% - var(--sidebar-width));
     left: var(--sidebar-width);
@@ -775,6 +722,7 @@ button:active {
   .overview-boxes {
     grid-template-columns: 1fr;
   }
+  .sidebar:hover ~ .home-section nav .profile-details,
   .sidebar.active ~ .home-section nav .profile-details {
     display: none;
   }
@@ -788,6 +736,7 @@ button:active {
     width: 0;
     transform: translateX(-100%);
   }
+  .sidebar:hover,
   .sidebar.active {
     width: var(--sidebar-collapsed);
     transform: translateX(0);
@@ -796,6 +745,7 @@ button:active {
     width: 100%;
     left: 0;
   }
+  .sidebar:hover ~ .home-section,
   .sidebar.active ~ .home-section {
     left: var(--sidebar-collapsed);
     width: calc(100% - var(--sidebar-collapsed));
@@ -805,6 +755,7 @@ button:active {
     left: 0;
     padding: 0 1rem;
   }
+  .sidebar:hover ~ .home-section nav,
   .sidebar.active ~ .home-section nav {
     left: var(--sidebar-collapsed);
     width: calc(100% - var(--sidebar-collapsed));
